@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "regex-dfa-gen",
+    "enum-lexer",
+    "enum-lexer-macro",
+]

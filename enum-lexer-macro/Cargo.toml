@@ -1,0 +1,25 @@
+[package]
+name = "enum-lexer-macro"
+version = "0.1.0"
+authors = ["dnailz <dnailzb@outlook.com>"]
+edition = "2018"
+license = "MIT"
+description = "A proc_macro lexer generator. using `enum`-like syntax."
+homepage = "https://github.com/DnailZ/enum-lexer"
+documentation = "https://docs.rs/enum-lexer"
+repository = "https://github.com/DnailZ/enum-lexer"
+readme = "README.md"
+keywords = ["lexer", "dfa", "regex"]
+
+
+[lib]
+proc-macro = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+syn = { version = "1.0.36", features=["full", "extra-traits"] }
+proc-macro2 = { version = "1.0.19", features=["span-locations"] }
+regex-dfa-gen = { path = "../regex-dfa-gen"}
+quote = "1.0"
+thiserror = "1.0.20"

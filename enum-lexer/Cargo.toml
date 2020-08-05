@@ -1,0 +1,18 @@
+[package]
+name = "enum-lexer"
+version = "0.1.0"
+authors = ["dnailz <dnailzb@outlook.com>"]
+edition = "2018"
+license = "MIT"
+description = "A proc_macro lexer generator. using `enum`-like syntax."
+homepage = "https://github.com/DnailZ/enum-lexer"
+documentation = "https://docs.rs/enum-lexer"
+repository = "https://github.com/DnailZ/enum-lexer"
+readme = "README.md"
+keywords = ["lexer", "dfa", "regex"]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+enum-lexer-macro = {path = "../enum-lexer-macro"}
