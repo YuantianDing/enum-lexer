@@ -15,4 +15,4 @@ keywords = ["lexer", "dfa", "regex"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-enum-lexer-macro = {path = "../enum-lexer-macro"}
+enum-lexer-macro = "0.1.0"
