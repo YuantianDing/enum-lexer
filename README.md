@@ -1,6 +1,9 @@
 
 # Enum Lexer
 
+[![Crate](https://img.shields.io/crates/v/rand.svg)](https://crates.io/crates/enum-lexer)
+[![API](https://docs.rs/rand/badge.svg)](https://docs.rs/enum-lexer)
+
 A proc_macro lexer generator. using `enum`-like syntax.
 
 ## Write a lexer
