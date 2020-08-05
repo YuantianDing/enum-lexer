@@ -13,7 +13,7 @@ pub fn sub1(c : char) -> char {
 }
 
 #[inline(always)]
-fn range_is_empty<T: Eq>(range: Range<T>) -> bool {
+fn range_is_empty<T: Eq>(range: &Range<T>) -> bool {
     range.start == range.end
 }
 
@@ -78,7 +78,7 @@ impl<K: Copy + Ord, V: Clone> RangeMap<K, V> {
 
     pub fn insert(&mut self, range: Range<K>, value : V) {
         use SplitResult::*;
-        if range_is_empty(range) {return;}
+        if range_is_empty(&range) {return;}
 
         let mut iter = self.0.iter_mut();
         let mut tmpvec : Vec<(Range<K>, Vec<V>)> = Vec::new();
@@ -89,12 +89,12 @@ impl<K: Copy + Ord, V: Clone> RangeMap<K, V> {
             match range.clone().and_then(|ran| inter_split(r.clone(), ran)) {
                 Some(FirstSecond(f, inter, s)) => {
                     // println!("FirstSecond {:?} {:?} {:?}", f, inter, s);
-                    if !range_is_empty(f) { tmpvec.push((f, vec.clone())); }
-                    if !range_is_empty(inter) {
+                    if !range_is_empty(&f) { tmpvec.push((f, vec.clone())); }
+                    if !range_is_empty(&inter) {
                         vec.push(value.clone());
                         tmpvec.push((inter, vec.clone()));
                     }
-                    if !range_is_empty(s) {
+                    if !range_is_empty(&s) {
                         range = Some(s);
                     } else {
                         range = None;
@@ -102,13 +102,13 @@ impl<K: Copy + Ord, V: Clone> RangeMap<K, V> {
                 }
                 Some(DoubleFirst(f1, inter, f2)) => {
                     // println!("DoubleFirst {:?} {:?} {:?}", f1, inter, f2);
-                    if !range_is_empty(f1) { tmpvec.push((f1, vec.clone())); }
-                    if !range_is_empty(inter) {
+                    if !range_is_empty(&f1) { tmpvec.push((f1, vec.clone())); }
+                    if !range_is_empty(&inter) {
                         let mut v = vec.clone();
                         v.push(value.clone());
                         tmpvec.push((inter, v));
                     }
-                    if !range_is_empty(f2) {
+                    if !range_is_empty(&f2) {
                         tmpvec.push((f2, vec.clone()));
                     }
                     range = None;
@@ -117,10 +117,10 @@ impl<K: Copy + Ord, V: Clone> RangeMap<K, V> {
                     // println!("DoubleSecend {:?} {:?} {:?}", s1, inter, s2);
                     vec.push(value.clone());
                     tmpvec.push((inter, vec.clone()));
-                    if !range_is_empty(s1) {
+                    if !range_is_empty(&s1) {
                         range = Some(s1);
                     }
-                    if !range_is_empty(s2) {
+                    if !range_is_empty(&s2) {
                         tmp_range = Some(s2);
                     }
                 }
