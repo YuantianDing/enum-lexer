@@ -90,8 +90,7 @@ impl<Iter : CharStream> Parser<Iter> {
         self.first
     }
 
-    fn next_matches(&mut self, c : char) {
-        trace!("{} == {}", self.first, c);
+    fn next_matches(&mut self, _c : char) {
         self.first = self.iter.next().unwrap_or('\0');
         self.pos += 1;
     }
@@ -99,7 +98,6 @@ impl<Iter : CharStream> Parser<Iter> {
     /// 
     /// `inside` mark whether it's inside a parentheses.
     pub fn parse_tree(&mut self, inside : bool) -> Result<AstNode> {
-        trace!("parse_tree first:{}", self.first);
         let mut ret = Vec::<AstNode>::new();
         loop{
             let op = self.parse_option()?;
@@ -120,7 +118,6 @@ impl<Iter : CharStream> Parser<Iter> {
             return Err(Error::MissingExpresion(self.pos));
         }
 
-        trace!("parse_tree {:?}", ret);
         if ret.len() == 1 {
             Ok(ret.pop().unwrap())
         } else {
@@ -147,7 +144,6 @@ impl<Iter : CharStream> Parser<Iter> {
             return Err(Error::MissingExpresion(self.pos));
         }
 
-        trace!("parse_option {:?}", ret);
         if ret.len() == 1 {
             Ok(ret.pop().unwrap())
         } else  {
@@ -227,7 +223,6 @@ impl<Iter : CharStream> Parser<Iter> {
             self.next_matches('?');
             ret = AstNode::EmptyOr(Box::new(ret));
         }
-        trace!("parse_element {:?}", ret);
         Ok(ret)
     }
 
@@ -256,7 +251,6 @@ impl<Iter : CharStream> Parser<Iter> {
             }
             self.next();
         }
-        trace!("parse_charset {:?}", ret);
         
         if ret.len() == 0{
             return Err(Error::MissingExpresion(self.pos));
