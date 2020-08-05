@@ -9,7 +9,7 @@ A proc_macro lexer generator. using `enum`-like syntax.
 #![feature(exclusive_range_pattern)]
 use enum_lexer::enum_lexer;
 
-enum_lexer! {
+enum_lexer! { 
     #[derive(Debug, Eq, PartialEq)]
     enum lexer {
         Ident(String): {
