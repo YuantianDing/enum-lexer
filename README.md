@@ -69,6 +69,8 @@ mod lexer {
 
 ## Usage
 
+`parse_str` will parse a string into a `TokenIterator`, which implemented `Iterator<Item=Result<lexer::Token>>` trait.
+
 ```rust
 let vec: lexer::Result<Vec<_>> =
     lexer::parse_str(r#"
