@@ -8,6 +8,10 @@ A proc_macro lexer generator. using `enum`-like syntax.
 
 ## Write a lexer
 
+Nightly feature exclusive_range_pattern is required for generated code. 
+
+
+
 ```rust
 #![feature(exclusive_range_pattern)]
 use enum_lexer::enum_lexer;
