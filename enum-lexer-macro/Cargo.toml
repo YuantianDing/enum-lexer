@@ -1,6 +1,6 @@
 [package]
 name = "enum-lexer-macro"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["dnailz <dnailzb@outlook.com>"]
 edition = "2018"
 license = "MIT"
